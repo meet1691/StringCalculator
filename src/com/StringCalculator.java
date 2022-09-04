@@ -1,6 +1,9 @@
 package com;
 
-public class StringCalculator {
+import java.util.ArrayList;
+
+public class StringCalculator extends Exception{
+
     public int add(String numbers){
 
         int sum = 0 ;
@@ -10,7 +13,16 @@ public class StringCalculator {
         else {
 
             String[] elements = numbers.split(",");
-            for (String element: elements){
+            ArrayList<String> listOfNegative = new ArrayList<>();
+
+            for (String element: elements) {
+                if (element.contains("-")){
+                    listOfNegative.add(element);
+                    continue;
+                }
+                if (element.length()>3){
+                    continue;
+                }
                 try {
                     int num = Integer.parseInt(element);
                     sum+=num;
@@ -20,9 +32,16 @@ public class StringCalculator {
                     sum+=index;
                 }
             }
+
+            if (listOfNegative.size()>0){
+                throw new IllegalArgumentException("Negative Numbers Are :"+listOfNegative);
+            }
+
+
         }
 
         return sum;
     }
+
 
 }

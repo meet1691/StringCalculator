@@ -3,7 +3,11 @@ import com.StringCalculator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class StringCalculatorTest {
     StringCalculator stringCalculator;
@@ -32,5 +36,19 @@ public class StringCalculatorTest {
         assertEquals(50,stringCalculator.add("a,3,5,b,z,3,j"));
     }
 
+
+    @Test public void ThrowNegativeNotAllowedExceptionTest(){
+        assertThrows("Negatives Not allowed",IllegalArgumentException.class,()->stringCalculator.add("1,-2"));
+    }
+
+
+    @Test public void showNegativesTest(){
+        assertThrows(IllegalArgumentException.class,()->stringCalculator.add("-2,-3,4,-5,6"));
+    }
+
+    @Test public void numberLargerThan1000ShouldIgnoreTest(){
+        assertEquals(2,stringCalculator.add("2,1001"));
+        assertEquals(64,stringCalculator.add("10,4,50,6000,4444"));
+    }
 
 }
