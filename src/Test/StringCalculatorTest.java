@@ -70,5 +70,4 @@ public class StringCalculatorTest {
         assertEquals(27, stringCalculator.add("1\n2,3,5,6,9\n1"));
     }
 
-
 }
