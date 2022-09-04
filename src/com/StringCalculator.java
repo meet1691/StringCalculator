@@ -20,7 +20,8 @@ public class StringCalculator extends Exception{
                     listOfNegative.add(element);
                     continue;
                 }
-                if (element.length()>3){
+                // here I assume 1000 should be allowed to add . If not then code should be "if (element.length()>3){...}"
+                if (!element.equals("1000") && element.length()>3){
                     continue;
                 }
                 try {
